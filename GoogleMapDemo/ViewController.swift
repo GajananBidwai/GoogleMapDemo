@@ -28,6 +28,7 @@ class ViewController: UIViewController {
 //            position: CLLocationCoordinate2D(latitude: 18.5091, longitude: 73.8326))
     override func viewDidLoad() {
         super.viewDidLoad()
+        googleMapView.delegate = self
        bitcodeMarker = GMSMarker(position: CLLocationCoordinate2D(latitude: 18.5091, longitude: 73.8326))
         delhiPosition = CLLocationCoordinate2D(latitude: 28.7041, longitude: 77.1025)
         delhiMarker = GMSMarker(position: delhiPosition!)
@@ -35,7 +36,7 @@ class ViewController: UIViewController {
         initializeMarker(marker: delhiMarker!)
         initializeMarker(marker: bitcodeMarker!)
         settingCameraPostion(position: bitcodeMarker!.position)
-        drawCircleOnMap(position: bitcodeMarker!.position, radius: 20.0)
+    //    drawCircleOnMap(position: bitcodeMarker!.position, radius: 20.0)
         drawPolygonOnMap()
         drawPolylineOnMap()
     }
@@ -121,18 +122,18 @@ class ViewController: UIViewController {
 extension ViewController : GMSMapViewDelegate
 {
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
-        let infoWindowRect = CGRect(x: 0, y: 0, width: 400, height: 200)
+        let infoWindowRect = CGRect(x: 0, y: 0, width: 200, height: 120)
         var infoWindowView = UIView(frame: infoWindowRect)
         infoWindowView.backgroundColor = .cyan
         
-        let labelOneRect = CGRect(x: 40, y: 40, width: infoWindowView.frame.width - 60, height: 40)
+        let labelOneRect = CGRect(x: 20, y: 20, width: infoWindowView.frame.width - 60, height: 40)
         
         var labelOne = UILabel(frame: labelOneRect)
         labelOne.text = "Welcome"
         labelOne.backgroundColor = .blue
         labelOne.textColor = .black
         
-        let labelTwoRect = CGRect(x: 40, y: 120, width: labelOneRect.width, height: 40)
+        let labelTwoRect = CGRect(x: 20, y: 80, width: labelOneRect.width, height: 40)
         var labelTwo = UILabel(frame: labelTwoRect)
         labelTwo.text = "Bitcode"
         labelTwo.backgroundColor = .cyan
